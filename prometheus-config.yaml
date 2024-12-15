@@ -91,6 +91,6 @@ data:
           - targets: ['backend.backend.svc.cluster.local:5050']
             labels:
               job: 'backend'
-          - targets: ['mongodb.mongodb.svc.cluster.local:27017']
+          - targets: ['mongodb.mongodb.svc.cluster.local:30017']
             labels:
               job: 'mongodb'
