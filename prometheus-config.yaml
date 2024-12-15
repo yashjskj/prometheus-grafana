@@ -85,12 +85,12 @@ data:
 
       - job_name: 'frontend-backend-mongodb'
         static_configs:
-          - targets: ['frontend.frontend.svc.cluster.local']
+          - targets: ['frontend.frontend.svc.cluster.local:80']
             labels:
               job: 'frontend'
-          - targets: ['backend.backend.svc.cluster.local']
+          - targets: ['backend.backend.svc.cluster.local:5050']
             labels:
               job: 'backend'
-          - targets: ['mongodb.mongodb.svc.cluster.local']
+          - targets: ['mongodb.mongodb.svc.cluster.local:27017']
             labels:
               job: 'mongodb'
