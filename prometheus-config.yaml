@@ -16,10 +16,10 @@ data:
             regex: __meta_kubernetes_service_label_(.+)
       - job_name: 'frontend'
         static_configs:
-          - targets: ['frontend-service.multi-service-app.svc.cluster.local:80']
+          - targets: ['frontend.frontend.svc.cluster.local:80']
       - job_name: 'backend'
         static_configs:
-          - targets: ['backend-service.multi-service-app.svc.cluster.local:5050']
+          - targets: ['backend.backend.svc.cluster.local:5050']
       - job_name: 'mongodb'
         static_configs:
-          - targets: ['mongodb-service.multi-service-app.svc.cluster.local:27017']
+          - targets: ['mongodb.mongodb.svc.cluster.local:27017']
