@@ -13,6 +13,7 @@ pipeline {
                     kubectl apply -f grafana-deployment.yaml
                     kubectl apply -f grafana-service.yaml
                     kubectl rollout restart deployment/grafana -n monitoring
+                    kubectl apply -f node-exporter-daemonset.yaml
                     '''
                 }
             }
