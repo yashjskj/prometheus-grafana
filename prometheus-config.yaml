@@ -82,13 +82,7 @@ data:
           - source_labels: [__meta_kubernetes_ingress_label_app]
             action: keep
             regex: .+
-      - job_name: 'prometheus'
-            static_configs:
-          - targets: ['192.168.49.2:30090']
-      - job_name: 'grafana'
-            static_configs:
-          - targets: ['192.168.49.2:30030']
-
+            
       - job_name: 'frontend-backend-mongodb'
         static_configs:
           - targets: ['frontend.frontend.svc.cluster.local:80']
