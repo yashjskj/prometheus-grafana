@@ -11,10 +11,16 @@ data:
     - job_name: 'kubernetes-apiservers'
       kubernetes_sd_configs:
         - role: endpoints
-      relabel_configs:
-        - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
-          action: keep
-          regex: kubernetes;https
+          namespaces:
+            names:
+              - default
+              - kube-system
+              - kube-public
+              - monitoring
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
+            action: keep
+            regex: kubernetes;https
 
     - job_name: 'kubernetes-nodes'
       kubernetes_sd_configs:
@@ -35,15 +41,47 @@ data:
     - job_name: 'kubernetes-pods'
       kubernetes_sd_configs:
         - role: pod
-      relabel_configs:
-        - source_labels: [__meta_kubernetes_pod_label_app]
-          action: keep
-          regex: .+
+          namespaces:
+            names:
+              - default
+              - kube-system
+              - kube-public
+              - monitoring
+              - backend
+              - frontend
+              - mongodb
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            action: keep
+            regex: .+
 
     - job_name: 'kubernetes-services'
       kubernetes_sd_configs:
         - role: service
-      relabel_configs:
-        - source_labels: [__meta_kubernetes_service_label_app]
-          action: keep
-          regex: .+
+          namespaces:
+            names:
+              - default
+              - kube-system
+              - kube-public
+              - monitoring
+              - backend
+              - frontend
+              - mongodb
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_service_label_app]
+            action: keep
+            regex: .+
+
+    - job_name: 'kubernetes-ingresses'
+      kubernetes_sd_configs:
+        - role: ingress
+          namespaces:
+            names:
+              - default
+              - kube-system
+              - kube-public
+              - monitoring
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_ingress_label_app]
+            action: keep
+            regex: .+
