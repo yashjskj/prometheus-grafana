@@ -6,6 +6,7 @@ pipeline {
                 script {
                     sh '''
                     kubectl apply -f namespace.yaml
+                    kubectl apply -f prometheus-rbac.yaml
                     kubectl apply -f prometheus-config.yaml
                     kubectl apply -f prometheus-deployment.yaml
                     kubectl rollout restart deployment/prometheus -n monitoring
