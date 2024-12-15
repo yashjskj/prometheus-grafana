@@ -85,7 +85,7 @@ data:
       - job_name: 'node_exporter_metrics'
         scrape_interval: 5s
         static_configs:
-          - targets: ['10.244.1.21:9100','10.244.1.25:80','10.244.1.28:5050','10.244.1.27:27017']
+          - targets: ['10.244.1.21:9100','10.244.1.25:9100','10.244.1.28:9100','10.244.1.27:9100']
 
       - job_name: 'frontend-backend-mongodb'
         static_configs:
